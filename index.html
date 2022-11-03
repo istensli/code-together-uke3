@@ -18,6 +18,8 @@
         }
 
         .box{
+            line-height: 200px;
+            text-align: center;
             margin: 10px;
             border: 1px solid black;
             width: 200px;
@@ -59,12 +61,15 @@
         function clickOnBox(index){
             clickedArray.push(loddArray[index]);
 
+            let id = /*HTML*/`box${index}`;
+            document.getElementById(id).style.pointerEvents = 'none';
+
             console.log(loddArray[index]);
 
             showBox(index);
 
             if (checkIfThree()){
-                console.log('Console log');
+                
                 document.getElementById('outputDiv').innerHTML = "DU HAR VUNNET";
             }
         }
