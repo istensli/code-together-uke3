@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #wrapper{
+            border: 1px solid black;
+            width: 700px;
+            height: 700px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            
+        }
+
+        .box{
+            margin: 10px;
+            border: 1px solid black;
+            width: 200px;
+            height: 200px;
+
+        }
+
+    </style>
+    
+</head>
+<body>
+
+    <div id="page">
+        <div id="wrapper">
+            <div class="box" id="box0" onclick="clickOnBox(0)"></div>
+            <div class="box" id="box1" onclick="clickOnBox(1)"></div>
+            <div class="box" id="box2" onclick="clickOnBox(2)"></div>
+            <div class="box" id="box3" onclick="clickOnBox(3)"></div>
+            <div class="box" id="box4" onclick="clickOnBox(4)"></div>
+            <div class="box" id="box5" onclick="clickOnBox(5)"></div>
+            <div class="box" id="box6" onclick="clickOnBox(6)"></div>
+            <div class="box" id="box7" onclick="clickOnBox(7)"></div>
+            <div class="box" id="box8" onclick="clickOnBox(8)"></div>
+            
+        </div>
+        <div id="outputDiv"></div>
+    </div>
+
+    
+
+    <script>
+
+        let loddArray = [];
+        
+        let clickedArray = [];
+
+        addNumbersToArray();
+
+        function clickOnBox(index){
+            clickedArray.push(loddArray[index]);
+
+            console.log(loddArray[index]);
+
+            showBox(index);
+
+            if (checkIfThree()){
+                console.log('Console log');
+                document.getElementById('outputDiv').innerHTML = "DU HAR VUNNET";
+            }
+        }
+
+        function addNumbersToArray(){
+            for(let i = 0; i < 9; i++){
+                loddArray[i] = getRandomNumber(1, 4);
+
+            }
+
+        }
+
+        function checkIfThree(){
+            console.log('Kjorer check If Three');
+
+            let one = 0;
+            let two = 0;
+            let three = 0;
+            let four = 0;
+
+            for(let i = 0; i < clickedArray.length; i++){
+                if(clickedArray[i] == 1){
+                    one++;
+                }
+                if(clickedArray[i] == 2){
+                    two++;
+                }
+                if(clickedArray[i] == 3){
+                    three++;
+                }
+                if(clickedArray[i] == 4){
+                    four++;
+                }
+
+            }
+            if(one > 2 || two > 2 || three > 2 || four > 2){
+                console.log('Du vant!');
+                return true;
+
+            }
+                
+            
+        }
+
+        function getRandomNumber(min, max){
+            return min + Math.floor(Math.random() *  (max - min + 1));
+
+        }
+
+        function showBox(boxNr){
+            boxId =  `box${boxNr}`;
+            document.getElementById(boxId).innerHTML = String(loddArray[boxNr]);
+
+        }
+
+
+        
+    </script>
+    
+</body>
+</html>
